@@ -1,6 +1,6 @@
 [build-system]
 requires = ["hatchling >= 1.26", 
-"torch >= 2.6.0+cu124", 
+"torch >= 2.6.0", 
 "pandas >= 2.2.2", 
 "matplotlib >= 3.10.0", 
 "numpy >= 2.0.2"]
