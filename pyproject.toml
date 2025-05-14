@@ -6,7 +6,7 @@ build-backend = "hatchling.build"
 
 [project]
 name = "pikernel"
-version = "0.0.3"
+version = "0.0.4"
 authors = [
   { name="Nathan Doumèche", email="nathan.doumeche@gmail.com" },
   { name="Claire Boyer", email="claire.boyer@universite-paris-saclay.fr" },
