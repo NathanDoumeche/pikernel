@@ -6,7 +6,7 @@ build-backend = "hatchling.build"
 
 [project]
 name = "pikernel"
-version = "0.0.1"
+version = "0.0.2"
 authors = [
   { name="Nathan Doumèche", email="nathan.doumeche@gmail.com" },
   { name="Claire Boyer", email="claire.boyer@universite-paris-saclay.fr" },
@@ -23,10 +23,11 @@ classifiers = [
 ]
 license = "MIT"
 license-files = ["LICEN[CS]E*"]
-requires = ["torch >= 2.6.0", 
+dependencies = ["torch >= 2.6.0", 
 "pandas >= 2.2.2", 
 "matplotlib >= 3.10.0", 
 "numpy >= 2.0.2"]
+
 [project.urls]
 Homepage = "https://github.com/NathanDoumeche/pikernel"
 Issues = "https://github.com/NathanDoumeche/pikernel/issues"
