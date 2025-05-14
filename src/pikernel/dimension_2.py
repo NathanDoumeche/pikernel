@@ -3,7 +3,7 @@ import pandas as pd
 from matplotlib import colors
 import matplotlib.pyplot as plt
 import numpy as np
-from src.pikernel.utils import *
+from pikernel.utils import *
 
 def Sob_formula(k1, k2, j1, j2, s, L):
     return torch.where(torch.logical_and(k1 == j1, k2 == j2), 1+ (k1**2 + k2**2)**s/(2*L)**(2*s), 0.)

@@ -4,7 +4,7 @@ import pandas as pd
 from matplotlib import colors
 import matplotlib.pyplot as plt
 import numpy as np
-from src.pikernel.utils import *
+from pikernel.utils import *
 
 def Sob_formula_1d(k, j, s, L):
     return torch.where(k == j, 1+ k**(2*s)/(2*L)**s, 0.)
