@@ -1,9 +1,5 @@
 [build-system]
-requires = ["hatchling >= 1.26", 
-"torch >= 2.6.0", 
-"pandas >= 2.2.2", 
-"matplotlib >= 3.10.0", 
-"numpy >= 2.0.2"]
+requires = ["hatchling >= 1.26"]
 
 build-backend = "hatchling.build"
 
@@ -27,7 +23,10 @@ classifiers = [
 ]
 license = "MIT"
 license-files = ["LICEN[CS]E*"]
-
+requires = ["torch >= 2.6.0", 
+"pandas >= 2.2.2", 
+"matplotlib >= 3.10.0", 
+"numpy >= 2.0.2"]
 [project.urls]
 Homepage = "https://github.com/NathanDoumeche/pikernel"
 Issues = "https://github.com/NathanDoumeche/pikernel/issues"
