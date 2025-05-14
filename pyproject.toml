@@ -1,0 +1,33 @@
+[build-system]
+requires = ["hatchling >= 1.26", 
+"torch >= 2.6.0+cu124", 
+"pandas >= 2.2.2", 
+"matplotlib >= 3.10.0", 
+"numpy >= 2.0.2"]
+
+build-backend = "hatchling.build"
+
+
+[project]
+name = "pikernel"
+version = "0.0.1"
+authors = [
+  { name="Nathan Doumèche", email="nathan.doumeche@gmail.com" },
+  { name="Claire Boyer", email="claire.boyer@universite-paris-saclay.fr" },
+  { name="Francis Bach", email="francis.bach@inria.fr" },
+  { name="Gérard Biau", email="gerard.biau@sorbonne-universite.fr" },
+
+]
+description = "A package implementing physics-informed kernels in dimensions 1 and 2"
+readme = "README.md"
+requires-python = ">=3.9"
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "Operating System :: OS Independent",
+]
+license = "MIT"
+license-files = ["LICEN[CS]E*"]
+
+[project.urls]
+Homepage = "https://github.com/NathanDoumeche/pikernel"
+Issues = "https://github.com/NathanDoumeche/pikernel/issues"
