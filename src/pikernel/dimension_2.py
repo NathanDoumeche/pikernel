@@ -348,3 +348,8 @@ def RFF_estimate(regression_vect, data_zt, data_zx, s, m, n, lambda_n, mu_n, L, 
   phi_z = phi_z_mat(m, data_zt, data_zx, L, device)
   estimator = torch.transpose(torch.conj_physical(phi_z), 0,1)@regression_vect
   return estimator
+
+
+
+dX = DifferentialOperator({(1, 0): 1})
+dY = DifferentialOperator({(0, 1): 1})
