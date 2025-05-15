@@ -67,7 +67,7 @@ Then, we evaluate the kernel on a testing dataset of $l = 10^3$ samples and we c
 
 The *device* variable from *pikernel.utils* automatically detects whether or not a GPU is available, and run the code on the best hardware available.
 
-**Differential operator.** To define the ODE $a_1 f + a_2 \frac{d}{dx}f+ \dots + a_{s+1} \frac{d^s}{dx^s}f = 0$, just set the variable *ODE* to $ODE = a_1 + a_2*dX + \dots + a_{s+1} * dX*\!*\;s$.
+**Differential operator.** To define the ODE $a_1 f + a_2 \frac{d}{dx}f+ \dots + a_{s+1} \frac{d^s}{dx^s}f = 0$, just set the variable *ODE* to $ODE = a_1 + a_2*dX + \dots + a_{s+1} * dX**s$.
 
 
 ```python
@@ -151,7 +151,7 @@ Then, we evaluate the kernel on a testing dataset of $l = 10^3$ samples and we c
 The *device* variable from *pikernel.utils* automatically detects whether or not a GPU is available, and run the code on the best hardware available.
 
 
-**Differential operator.** For example, to define the PDE $a_1 f + a_2 \frac{\partial}{\partial x}f+ a_3 \frac{\partial}{ \partial y}f + a_4 \frac{\partial^2}{\partial x \partial y}f + a_5 \frac{\partial^3}{\partial x^3}f= 0$, just set the variable *PDE* to $PDE = a_1 + a_2 * dX+ a_3 * dY + a_4 * dX*dY + a_5 * dX*\!*\;3$.
+**Differential operator.** For example, to define the PDE $a_1 f + a_2 \frac{\partial}{\partial x}f+ a_3 \frac{\partial}{ \partial y}f + a_4 \frac{\partial^2}{\partial x \partial y}f + a_5 \frac{\partial^3}{\partial x^3}f= 0$, just set the variable *PDE* to $PDE = a_1 + a_2 * dX+ a_3 * dY + a_4 * dX*dY + a_5 * dX**3$.
 
 ```python
 import pandas as pd
