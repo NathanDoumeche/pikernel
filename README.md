@@ -55,8 +55,8 @@ In this example, the goal is to learn a function $f^\star$ such that $Y = f^\sta
 * $f^\star$ is assumed to satisfy the ODE $f'' + f' + f = 0$. 
 
 **Kernel method.** To this aim, we train a physics-informed kernel on $n = 10^3$ i.i.d. samples $(X_1, Y_1), \dots, (X_n, Y_n)$. This kernel method minimizes the empirical risk
-$$L(f) = \frac{1}{n}\sum_{j=1}^n |f(X_i)-Y_i|^2 + \lambda_n |f|_s^2+ \mu_n \int_{[-L,L]} (f''(x)+f'(x)+f(x))^2dx,$$
-over the class of function 
+$$L(f) = \frac{1}{n}\sum_{j=1}^n |f(X_i)-Y_i|^2 + \lambda_n |f|_s^2+ \mu_n \int_{-L}^L (f''(x)+f'(x)+f(x))^2dx,$$
+over the class of functions 
 $H_m$, where
 * $H_m$ is space of complex-valued trigonometric polynomials of degree at most $m$, i.e., $H_m$ is the class of functions $f$ such that $f(x) = \sum_{k=-m}^m \theta_k \exp(i  \pi k x/(2L))$ for some Fourier coefficients $\theta_k \in \mathbb C$ 
 * $\lambda_n, \mu_n \geq 0$ are hyperparameters set by the user.
