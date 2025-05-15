@@ -71,11 +71,11 @@ The *device* variable from *pikernel.utils* automatically detects whether or not
 
 
 ```python
-import pandas as pd
 import torch
+import numpy as np
 
-from pikernel.dimension_1 import RFF_fit_1d, RFF_estimate_1d, dX
 from pikernel.utils import device
+from pikernel.dimension_1 import RFF_fit_1d, RFF_estimate_1d, dX
 
 # Set a seed for reproducibility of the results
 torch.manual_seed(1)
@@ -93,12 +93,13 @@ m = 10**2         # Number of Fourier features
 l = 10**3         # Number of test points
 
 # Generate the training data
+scaling = np.sqrt(3) / 2
 x_train = torch.rand(n, device=device) * 2 * L - L
-y_train = torch.exp(-x_train / 2) * torch.cos(torch.sqrt(3) / 2 * x_train) + sigma * torch.randn(n, device=device)
+y_train = torch.exp(-x_train / 2) * torch.cos(scaling* x_train) + sigma * torch.randn(n, device=device)
 
 # Generate the test data
 x_test = torch.rand(l, device=device) * 2 * L - L
-ground_truth = torch.exp(-x_test / 2) * torch.cos(torch.sqrt(3) / 2 * x_test)
+ground_truth = torch.exp(-x_test / 2) * torch.cos(scaling* x_test)
 
 # Regularization parameters
 lambda_n = 1 / n    # Smoothness hyperparameter
@@ -113,7 +114,6 @@ y_pred = RFF_estimate_1d(regression_vector, x_test, s, m, n, lambda_n, mu_n, L, 
 # Compute the mean squared error
 mse = torch.mean((torch.real(y_pred) - ground_truth) ** 2).item()
 print(f"MSE = {mse}")
-
 ```
 
 Output
@@ -153,7 +153,6 @@ The *device* variable from *pikernel.utils* automatically detects whether or not
 **Differential operator.** For example, to define the PDE $a_1 f + a_2 \frac{\partial}{\partial x}f+ a_3 \frac{\partial}{ \partial y}f + a_4 \frac{\partial^2}{\partial x \partial y}f + a_5 \frac{\partial^3}{\partial x^3}f= 0$, just set the variable *PDE* to $PDE = a_1 + a_2 * dX+ a_3 * dY + a_4 * dX*dY + a_5 * dX**3$.
 
 ```python
-import pandas as pd
 import torch
 
 from pikernel.dimension_2 import RFF_fit, RFF_estimate, dX, dY
@@ -199,5 +198,5 @@ print("MSE = ", mse)
 
 Output
 ```bash
-MSE =  0.00980181069349196
+MSE =  0.006954170339062708
 ```
