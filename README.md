@@ -40,10 +40,7 @@ To cite this package:
       title={Physics-informed kernel learning},
       author={Nathan Doumèche and Francis Bach and Gérard Biau and Claire Boyer},
       journal={arXiv:2409.13786},
-      volume={},
-      pages={},
-      year={2024},
-      publisher={}
+      year={2024}
     }
 
 ## Minimal example in 1 dimension 
@@ -55,7 +52,16 @@ In this minimal example, the goal is to learn a function $f^\star$ such that $Y 
 * $f^\star$ is assumed to be $s$ times differentiable, for $s = 2$,
 * $f^\star$ is assumed to satisfy the ODE $f'' + f' + f = 0$. 
 
-To this aim, we train a physics-informed kernel on $n = 10^3$ i.i.d. training points $(X_1, Y_1), \dots, (X_n, Y_n)$. The kernel is discretized over $m = 10^2$ Fourier modes. (The higher the number of Fourier modes, the better the approximation of the kernel.) Then, we evaluate the kernel on a testing dataset of $l = 10^3$ testing points and we compute its RMSE.
+To this aim, we train a physics-informed kernel on $n = 10^3$ i.i.d. samples $(X_1, Y_1), \dots, (X_n, Y_n)$. This kernel method minimizes the empirical risk
+$$L(f) = \frac{1}{n}\sum_{j=1}^n |f(X_i)-Y_i|^2 + \lambda_n \|f\|_{H^s}^2+ \mu_n \int_{[-L,L]} (f''(x)+f'(x)+f(x))^2dx,$$
+over the class of function 
+$H_m = \{(x\mapsto f(x) = \sum_{k=-m}^m \theta_k \exp(i \pi/L x)), \quad \theta_k \in \mathbb C\}$
+where 
+* $\lambda_n, \mu_n \geq 0$ are hyperparameters set by the user.
+* $ \|f\|_{H^s}$ is the Sobolev norm of order $s$ of $f$.
+* the method is discretized over $m = 10^2$ Fourier modes. The higher the number of Fourier modes, the better the approximation capabilities of the kernel. 
+
+Then, we evaluate the kernel on a testing dataset of $l = 10^3$ samples and we compute its RMSE.
 
 The *device* variable from *pikernel.utils* automatically detects whether or not a GPU is available, and run the code on the best hardware available.
 
@@ -79,18 +85,18 @@ np.random.seed(1)
 torch.manual_seed(1)
 
 # Parameters
-sigma = 0.5       # Noise level
+sigma = 0.5       # Noise standard deviation
 s = 2             # Smoothness of the solution 
 L = np.pi         # Domain: [-L, L]
 n = 10**3         # Number of training samples
 m = 10**2         # Number of Fourier features
 l = 10**3         # Number of test points
 
-# Generate training data
+# Generate the training data
 x_train = torch.rand(n, device=device) * 2 * L - L
 y_train = torch.exp(-x_train / 2) * torch.cos(np.sqrt(3) / 2 * x_train) + sigma * torch.randn(n, device=device)
 
-# Generate test data
+# Generate the test data
 x_test = torch.rand(l, device=device) * 2 * L - L
 y_test = torch.exp(-x_test / 2) * torch.cos(np.sqrt(3) / 2 * x_test)
 
