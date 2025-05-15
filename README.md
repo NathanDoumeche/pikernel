@@ -138,11 +138,11 @@ In this example, the goal is to learn a function $f^\star$ such that $Z = f^\sta
 * the disk $\Omega = \{(x,y)\in \mathbb R^2, \; x^2+y^2 \leq L^2\}$, by setting $domain = "disk"$.
 
 **Kernel method.** To this aim, we train a physics-informed kernel on $n = 10^3$ i.i.d. samples $(X_1, Y_1), \dots, (X_n, Y_n)$. This kernel method minimizes the empirical risk
-$$L(f) = \frac{1}{n}\sum_{j=1}^n |f(X_i)-Y_i|^2 + \lambda_n ||f||_s^2+ \mu_n \int_{\Omega} (\frac{\partial}{\partial_x} f(x) -\frac{\partial^2}{\partial_y^2} f(x))^2dx,$$
+$$L(f) = \frac{1}{n}\sum_{j=1}^n |f(X_i)-Y_i|^2 + \lambda_n ||f||^2+ \mu_n \int_{\Omega} (\frac{\partial}{\partial_x} f(x) -\frac{\partial^2}{\partial_y^2} f(x))^2dx,$$
 over the class of function $H_m$, where
 * $H_m$ is space of complex-valued trigonometric polynomials of degree at most $m$, i.e., $H_m$ is the class of functions $f$ such that $f(x) = \sum_{k_1=-m}^m\sum_{k_2=-m}^m \theta_{k_1, k_2} \exp(i \pi (k_1 x+ k_2 y)/(2L) )$ for some Fourier coefficients $\theta_{k_1, k_2} \in \mathbb C$ 
 * $\lambda_n, \mu_n \geq 0$ are hyperparameters set by the user.
-* $ ||f||_s$ is the Sobolev norm of order $s$ of $f$.
+* $ ||f||$ is the Sobolev norm of order $s$ of $f$.
 * the method is discretized over $m = 10^1$ Fourier modes. The higher the number of Fourier modes, the better the approximation capabilities of the kernel. 
 
 Then, we evaluate the kernel on a testing dataset of $l = 10^3$ samples and we compute its RMSE. In this example, the unknown function is $$f^\star(x) = \exp(-x/2) \cos(\sqrt{3}/2 \;x).$$
