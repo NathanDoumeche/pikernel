@@ -14,3 +14,4 @@ def test_sob_mat_1d():
     s_mat = dim1.Sob_matrix_1d(m, s, L, device)
 
     assert True
+    

@@ -43,7 +43,8 @@ To cite this package:
       year={2024}
     }
 
-## Example in 1 dimension 
+# Minimal examples
+## Example in dimension 1
 
 **Setting.**
 In this minimal example, the goal is to learn a function $f^\star$ such that $Y = f^\star(X)+\varepsilon$, where
@@ -72,14 +73,12 @@ import numpy as np
 import pandas as pd
 import torch
 
-from pikernel.dimension_1 import DifferentialOperator1d, RFF_fit_1d, RFF_estimate_1d
+from pikernel.dimension_1 import RFF_fit_1d, RFF_estimate_1d, dX
 from pikernel.utils import device
 
-# Define the differential operator d/dx
-dX = DifferentialOperator1d({(1): 1})
-
+# dX is the differential operator d/dx
 # Define the ODE: f'' + f' + f = 0
-PDE = dX**2 + dX + 1
+ODE = dX**2 + dX + 1
 
 # Set random seeds for reproducibility
 np.random.seed(1)
@@ -103,13 +102,13 @@ y_test = torch.exp(-x_test / 2) * torch.cos(np.sqrt(3) / 2 * x_test)
 
 # Regularization parameters
 lambda_n = np.log(n) / n    # Smoothness hyperparameter
-mu_n = 10**4                # PDE hyperparameter
+mu_n = 1                    # PDE hyperparameter
 
 # Fit model using the ODE constraint
-regression_vector = RFF_fit_1d(x_train, y_train, s, m, lambda_n, mu_n, L, PDE, device)
+regression_vector = RFF_fit_1d(x_train, y_train, s, m, lambda_n, mu_n, L, ODE, device)
 
 # Predict on test data
-y_pred = RFF_estimate_1d(regression_vector, x_test, s, m, n, lambda_n, mu_n, L, PDE, device)
+y_pred = RFF_estimate_1d(regression_vector, x_test, s, m, n, lambda_n, mu_n, L, ODE, device)
 
 # Compute RMSE
 rmse = torch.mean((torch.real(y_pred) - y_test) ** 2).item()
@@ -119,5 +118,8 @@ print(f"MSE = {rmse}")
 
 Output
 ```bash
-MSE = 0.0011560102081362347
+MSE = 0.0011114489418507852
 ```
+
+
+## Example in dimension 2
