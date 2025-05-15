@@ -55,12 +55,12 @@ In this example, the goal is to learn a function $f^\star$ such that $Y = f^\sta
 * $f^\star$ is assumed to satisfy the ODE $f'' + f' + f = 0$. 
 
 **Kernel method.** To this aim, we train a physics-informed kernel on $n = 10^3$ i.i.d. samples $(X_1, Y_1), \dots, (X_n, Y_n)$. This kernel method minimizes the empirical risk
-$$L(f) = \frac{1}{n}\sum_{j=1}^n |f(X_i)-Y_i|^2 + \lambda_n ||f||_{H^s}^2+ \mu_n \int_{[-L,L]} (f''(x)+f'(x)+f(x))^2dx,$$
+$$L(f) = \frac{1}{n}\sum_{j=1}^n |f(X_i)-Y_i|^2 + \lambda_n |f|_s^2+ \mu_n \int_{[-L,L]} (f''(x)+f'(x)+f(x))^2dx,$$
 over the class of function 
 $H_m$, where
 * $H_m$ is space of complex-valued trigonometric polynomials of degree at most $m$, i.e., $H_m$ is the class of functions $f$ such that $f(x) = \sum_{k=-m}^m \theta_k \exp(i  \pi k x/(2L))$ for some Fourier coefficients $\theta_k \in \mathbb C$ 
 * $\lambda_n, \mu_n \geq 0$ are hyperparameters set by the user.
-* $ ||f||_{H^s}$ is the Sobolev norm of order $s$ of $f$.
+* $|f|_s$ is the Sobolev norm of order $s$ of $f$.
 * the method is discretized over $m = 10^2$ Fourier modes. The higher the number of Fourier modes, the better the approximation capabilities of the kernel. 
 
 Then, we evaluate the kernel on a testing dataset of $l = 10^3$ samples and we compute its RMSE. In this example, the unknown function is $$f^\star(x) = \exp(-x/2) \cos(x\sqrt{3}/2 ).$$
