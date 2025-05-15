@@ -43,8 +43,9 @@ To cite this package:
       year={2024}
     }
 
-## Minimal example in 1 dimension 
+## Example in 1 dimension 
 
+**Setting.**
 In this minimal example, the goal is to learn a function $f^\star$ such that $Y = f^\star(X)+\varepsilon$, where
 * $Y$ is the target random variable, taking values in $\mathbb R$,
 * $X$ is the feature random variable, following the uniform distribution $[-L,L]$ with $L = \pi$,
@@ -52,7 +53,7 @@ In this minimal example, the goal is to learn a function $f^\star$ such that $Y 
 * $f^\star$ is assumed to be $s$ times differentiable, for $s = 2$,
 * $f^\star$ is assumed to satisfy the ODE $f'' + f' + f = 0$. 
 
-To this aim, we train a physics-informed kernel on $n = 10^3$ i.i.d. samples $(X_1, Y_1), \dots, (X_n, Y_n)$. This kernel method minimizes the empirical risk
+**Kernel method.** To this aim, we train a physics-informed kernel on $n = 10^3$ i.i.d. samples $(X_1, Y_1), \dots, (X_n, Y_n)$. This kernel method minimizes the empirical risk
 $$L(f) = \frac{1}{n}\sum_{j=1}^n |f(X_i)-Y_i|^2 + \lambda_n \|f\|_{H^s}^2+ \mu_n \int_{[-L,L]} (f''(x)+f'(x)+f(x))^2dx,$$
 over the class of function 
 $H_m = \{(x\mapsto f(x) = \sum_{k=-m}^m \theta_k \exp(i \pi/L x)), \quad \theta_k \in \mathbb C\}$
@@ -61,7 +62,7 @@ where
 * $ \|f\|_{H^s}$ is the Sobolev norm of order $s$ of $f$.
 * the method is discretized over $m = 10^2$ Fourier modes. The higher the number of Fourier modes, the better the approximation capabilities of the kernel. 
 
-Then, we evaluate the kernel on a testing dataset of $l = 10^3$ samples and we compute its RMSE.
+Then, we evaluate the kernel on a testing dataset of $l = 10^3$ samples and we compute its RMSE. In this example, the unknown function is $$f^\star(x) = \exp(-x/2) \cos(\sqrt{3}/2 \;x).$$
 
 The *device* variable from *pikernel.utils* automatically detects whether or not a GPU is available, and run the code on the best hardware available.
 
@@ -118,5 +119,5 @@ print(f"MSE = {rmse}")
 
 Output
 ```bash
-RMSE = 0.05328356702649015.
+MSE = 0.0011560102081362347
 ```
