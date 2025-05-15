@@ -9,8 +9,8 @@ name = "pikernel"
 version = "0.0.5"
 authors = [
   { name="Nathan Doumèche", email="nathan.doumeche@gmail.com" },
-  { name="Claire Boyer", email="claire.boyer@universite-paris-saclay.fr" },
   { name="Francis Bach", email="francis.bach@inria.fr" },
+  { name="Claire Boyer", email="claire.boyer@universite-paris-saclay.fr" },
   { name="Gérard Biau", email="gerard.biau@sorbonne-universite.fr" },
 
 ]
