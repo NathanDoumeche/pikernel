@@ -55,7 +55,7 @@ In this example, the goal is to learn a function $f^\star$ such that $Y = f^\sta
 * $f^\star$ is assumed to satisfy the ODE $f'' + f' + f = 0$. 
 
 **Kernel method.** To this aim, we train a physics-informed kernel on $n = 10^3$ i.i.d. samples $(X_1, Y_1), \dots, (X_n, Y_n)$. This kernel method minimizes the empirical risk
-$$L(f) = \frac{1}{n}\sum_{j=1}^n |f(X_i)-Y_i|^2 + \lambda_n |f|_s^2+ \mu_n \int_{-L}^L (f''(x)+f'(x)+f(x))^2dx,$$
+$$L(f) = \frac{1}{n}\sum_{j=1}^n |f(X_i)-Y_i|^2 + \lambda_n |f|^2_s+ \mu_n \int_{-L}^L (f''(x)+f'(x)+f(x))^2dx,$$
 over the class of functions 
 $H_m$, where
 * $H_m$ is space of complex-valued trigonometric polynomials of degree at most $m$, i.e., $H_m$ is the class of functions $f$ such that $f(x) = \sum_{k=-m}^m \theta_k \exp(i  \pi k x/(2L))$ for some Fourier coefficients $\theta_k \in \mathbb C$ 
@@ -135,7 +135,7 @@ In this example, the goal is to learn a function $f^\star$ such that $Z = f^\sta
 **Domain.** In this example the domain is $\Omega = [-L,L]^2$. It is possible to consider different domains, by changing the variable *domain*. The available domains are
 
 * the square $\Omega = [-L,L]^2$, by setting $domain = "square"$,
-* the disk $\Omega = \{(x,y)\in \mathbb R^2, \; x^2+y^2 \leq L^2\}$, by setting $domain = "disk"$.
+* the disk $\Omega$ made of all points $(x,y)\in \mathbb R^2$ with $x^2+y^2 \leq L^2$, by setting $domain = "disk"$.
 
 **Kernel method.** To this aim, we train a physics-informed kernel on $n = 10^3$ i.i.d. samples $(X_1, Y_1), \dots, (X_n, Y_n)$. This kernel method minimizes the empirical risk
 $$L(f) = \frac{1}{n}\sum_{j=1}^n |f(X_i)-Y_i|^2 + \lambda_n |f|^2_s+ \mu_n \int_{\Omega} (\frac{\partial}{\partial_x} f(x) -\frac{\partial^2}{\partial_y^2} f(x))^2dx,$$
