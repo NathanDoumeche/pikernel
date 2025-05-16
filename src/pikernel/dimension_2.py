@@ -351,5 +351,5 @@ def RFF_estimate(regression_vect, data_zt, data_zx, s, m, n, lambda_n, mu_n, L, 
 
 
 
-dX = DifferentialOperator({(1, 0): 1})
-dY = DifferentialOperator({(0, 1): 1})
+dX_1 = DifferentialOperator({(1, 0): 1})
+dX_2 = DifferentialOperator({(0, 1): 1})

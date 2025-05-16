@@ -4,18 +4,16 @@ from matplotlib import colors
 import matplotlib.pyplot as plt
 import numpy as np
 
-
-
-device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
-
 torch.set_default_dtype(torch.float64)
 
-def is_running_on_gpu():
+def find_device():
   if torch.cuda.is_available():
     print("The algorithm is running on GPU.")
   else:
     print("The algorithm is not running on GPU.")
-
+  
+  device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
+  return device
 
 def save(list1, list2, list3, name):
   pd.DataFrame(data={"a": list1, "b": [i.tolist() for i in list2], "c": [i.tolist() for i in list3]}).to_csv(name+".csv")
