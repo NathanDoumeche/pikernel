@@ -70,7 +70,7 @@ Then, we evaluate the kernel on a testing dataset of $l = 10^3$ samples and we c
 
 The *device* variable from *pikernel.utils* automatically detects whether or not a GPU is available, and run the code on the best hardware available.
 
-**Differential operator.** In the *pikernel* framework, ODEs are stored into a specific *ODE* variable. To define the ODE $a_1 f + a_2 \frac{d}{dx}f+ \dots + a_{s+1} \frac{d^s}{dx^s}f = 0$, just set the variable *ODE* to $ODE = a_1 + a_2*dX + \dots + a_{s+1} * dX**s$. In this specific example, the ODE $f''+f'+f=0$ translates into $ODE = 1 + dX + dX**2$.
+**Differential operator.** In the *pikernel* framework, ODEs are stored into a specific *ODE* variable. To define the ODE $a_1 f + a_2 \frac{d}{dx}f+ \dots + a_{s+1} \frac{d^s}{dx^s}f = 0$, just set the variable *ODE* to $ODE = a_1 + a_2*dX + \dots + a_{s+1} * dX* *s$. In this specific example, the ODE $f''+f'+f=0$ translates into $ODE = 1 + dX + dX* *2$.
 
 
 ```python
@@ -161,8 +161,8 @@ The *device* variable from *pikernel.utils* automatically detects whether or not
 
 
 **Differential operator.** 
-In the *pikernel* framework, PDEs are stored into a specific *PDE* variable. For example, to define the PDE $a_1 f + a_2 \frac{\partial}{\partial 1}f+ a_3 \frac{\partial}{ \partial 2}f + a_4 \frac{\partial^2}{\partial 1 \partial 2}f + a_5 \frac{\partial^3}{\partial 1^3}f= 0$, just set the variable *PDE* to $PDE = a_1 + a_2 * dX_1+ a_3 * dX_2 + a_4 * dX_1*dX_2 + a_5 * dX_1**3$.
- In the following example, the heat equation $\frac{\partial}{\partial_1} f -\frac{\partial^2}{\partial_2^2} f=0$ translates into $PDE = dX_1 - dX_2**2$.
+In the *pikernel* framework, PDEs are stored into a specific *PDE* variable. For example, to define the PDE $a_1 f + a_2 \frac{\partial}{\partial 1}f+ a_3 \frac{\partial}{ \partial 2}f + a_4 \frac{\partial^2}{\partial 1 \partial 2}f + a_5 \frac{\partial^3}{\partial 1^3}f= 0$, just set the variable *PDE* to $PDE = a_1 + a_2 * dX_1+ a_3 * dX_2 + a_4 * dX_1*dX_2 + a_5 * dX_1* *3$.
+ In the following example, the heat equation $\frac{\partial}{\partial_1} f -\frac{\partial^2}{\partial_2^2} f=0$ translates into $PDE = dX_1 - dX_2* *2$.
 
 ```python
 import torch
